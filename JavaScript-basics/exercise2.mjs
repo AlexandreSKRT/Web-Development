@@ -1,6 +1,7 @@
 "use strict";
 
-export function wc(text){
+//WordCount wc function
+export function wc(text) {
     var results = {};
     var text_split = text.split(" ");
     for (let word of text_split) {
@@ -11,4 +12,19 @@ export function wc(text){
         }
     }
     return results;
+}
+
+//Class WordL
+
+export function WordL(text) {
+    this.text = text;
+}
+
+WordL.prototype.getWords = function(text){
+    var results = {};
+    var text_split = text.split(" ");
+    var uniqueWords = [...new Set(text_split)];
+    uniqueWords.sort();
+    return uniqueWords;
+
 }
