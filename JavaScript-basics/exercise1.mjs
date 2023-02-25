@@ -28,7 +28,16 @@ export function fiboRec(n) {
 }
 
 // no map function
-export function fibonaArr(t) {}
+export function fibonaArr(t) {
+    var myArray = [];
+    for(var i=0; i<t.length; i++){
+        myArray.push(fiboIt(t[i]));
+    }
+    return myArray;
+}
 
 // no loop
-export function fibo_map(t) {}
+export function fibo_map(t) {
+    var mapFib = t.map(x => fiboIt(x));
+    return mapFib;
+}
