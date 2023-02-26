@@ -11,4 +11,8 @@ console.log(" ");
 
 // WordL class
 console.log("**** WordL class *****");
-console.log(WordL(test_str).getWords());
+var test = new WordL("fish bowl fish plane robot robot fish plane plane");
+console.log("-- Test getWords --");
+console.log(test.getWords());
+console.log("-- Test maxCountWord --");
+console.log("max occurences : " + test.maxCountWord());
