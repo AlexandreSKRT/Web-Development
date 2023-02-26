@@ -1,6 +1,9 @@
 "use strict";
 
-import {wc, WordL} from "./exercise2.mjs";
+import {
+    wc,
+    WordL
+} from "./exercise2.mjs";
 
 // Wc function test
 console.log("**** wc function *****")
@@ -28,6 +31,8 @@ console.log("Test for plane : " + test.getCount("plane"));
 console.log("--- Test applyWordFunc --");
 console.log("Test for .length : ")
 
-function f (word) {return word.length;}
+function f(word) {
+    return word.length;
+}
 
 console.log(test.applyWordFunc(f))

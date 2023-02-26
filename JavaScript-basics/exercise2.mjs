@@ -18,7 +18,7 @@ export function wc(text) {
 
 export class WordL {
     // Constructor
-    constructor (str) {
+    constructor(str) {
         this.str = str;
         this.text_split = str.split(" ");
         this.words_counted = wc(str);
@@ -26,10 +26,10 @@ export class WordL {
 
     // Methods
     getWords() {
-        let uniqueWords = [... new Set(this.text_split)];
+        let uniqueWords = [...new Set(this.text_split)];
         uniqueWords.sort();
         return uniqueWords;
-    }    
+    }
 
     maxCountWord() {
         var arr = Object.values(this.words_counted);
@@ -40,7 +40,7 @@ export class WordL {
             if (value === max) {
                 results.push(key);
             }
-          }
+        }
         results.sort();
         return results[0];
     }
@@ -54,7 +54,7 @@ export class WordL {
             if (value === min) {
                 results.push(key);
             }
-          }
+        }
         results.sort();
         return results[0];
     }
