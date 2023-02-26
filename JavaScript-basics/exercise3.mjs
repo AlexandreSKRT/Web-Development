@@ -14,5 +14,17 @@ export class Std {
     toString() {
         return "student: " + this.lastName + ", " + this.firstName + ", " + this.id;
     }
+}
 
+export class FrStd extends Std {
+    //Constructor 
+    constructor(lastName, firstName, id, nationality) {
+        super(lastName, firstName, id);
+        this.nationality = nationality;
+    }
+
+    //Methods
+    toString() {
+        return super.toString() + ", " + this.nationality;
+    }
 }
