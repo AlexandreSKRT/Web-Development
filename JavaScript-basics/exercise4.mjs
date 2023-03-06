@@ -5,6 +5,9 @@ import {
     FrStd
 } from "./exercise3.mjs";
 
+import fs from 'fs'
+import {readFileSync, writeFileSync} from 'fs'
+
 export class Prmtn {
     //Constructor
     constructor() {
@@ -55,6 +58,19 @@ export class Prmtn {
         const fs = require('fs');
         fs.writeFileSync('Output.txt', data, (err) => {
             if (err) throw err;
+        })
+    }
+
+    saveTo(fileName){
+        fs.writeFile(fileName, this.write(), function (err, data) {
+            if (err) console.log(err);
+          });
+    }
+
+    readFrom(fileName){
+        fs.readFile(fileName, (err, data) => {
+            if (err) throw err;
+            this.read(data.toString())
         })
     }
 }
