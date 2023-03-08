@@ -1,0 +1,23 @@
+img {
+    float: left;
+    margin: 16px;
+}
+
+#div_2 {
+    border-width: 1px; 
+    border-style: solid; 
+    padding: 8px;
+}
+
+#div_3 {
+    background-color: lightslategray; 
+    margin: 10px;
+}
+
+.foreground{
+    position: fixed;
+    top: 119px;
+    left: 119px;
+    width: 425px;
+    height: 425px;
+}
