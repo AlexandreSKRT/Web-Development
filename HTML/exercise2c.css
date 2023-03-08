@@ -3,13 +3,13 @@ img {
     margin: 16px;
 }
 
-#div_2 {
+#div_1 {
     border-width: 1px; 
     border-style: solid; 
     padding: 8px;
 }
 
 #div_3 {
-    background-color: lightslategray; 
+    background-color: lightslategrey; 
     margin: 10px;
 }
