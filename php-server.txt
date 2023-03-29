@@ -1,0 +1,4 @@
+>> go to local directory where you want to start the php server
+php -S localhost:5000 -t .
+>> web browser : localhost:5000/exercise.html
+enjoyyy  
