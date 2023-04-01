@@ -15,6 +15,8 @@ function load() {
   xhr.send();
 }
 
+load();
+
 function play() {
   for (var slide in slides_JSON.slides) {
     setTimeout(
@@ -33,5 +35,3 @@ function play() {
     );
   }
 }
-
-load();
