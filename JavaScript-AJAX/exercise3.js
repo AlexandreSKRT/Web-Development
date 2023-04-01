@@ -9,8 +9,8 @@ function load() {
   xhr.onload = function () {
     slides_JSON = JSON.parse(this.responseText);
     // [TESTING] : responseText & XMLHTTP status
-    window.alert(this.responseText);
-    window.alert(this.status);
+    // window.alert(this.responseText);
+    // window.alert(this.status);
   };
   xhr.send();
 }
@@ -28,7 +28,7 @@ function play() {
         // Add the iframe element to the container
         container.appendChild(iframe);
       },
-      1000 * slide.time, //delay of the setTimeout function
+      100 * slide.time, //delay of the setTimeout function
       slide.url //param1 of setTimeout delayed function
     );
   }
