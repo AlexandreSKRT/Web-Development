@@ -30,8 +30,8 @@ function play() {
         // Add the iframe element to the container
         container.appendChild(iframe);
       },
-      100 * slide.time, //delay of the setTimeout function
-      slide.url //param1 of setTimeout delayed function
+      1000 * slides_JSON.slides[slide].time, //delay of the setTimeout function
+      slides_JSON.slides[slide].url //param1 of setTimeout delayed function
     );
   }
 }
