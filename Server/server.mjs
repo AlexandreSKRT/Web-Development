@@ -1,6 +1,7 @@
 "use strict";
 
 import { createServer } from "http";
+import querystring from "querystring";
 import * as fs from "fs";
 import mime from "mime";
 
@@ -10,13 +11,17 @@ function webserver(request, response) {
 
   // Kill Process -> shuts down server
   if (request.url == "/kill") {
-    response.end("<!doctype html><html><body>The server will stop now.</body></html>");
+    response.end(
+      "<!doctype html><html><body>The server will stop now.</body></html>"
+    );
     process.exit(0);
+
   // GET request -> 'hi?user='
-  } else if (request.url.slice(0, 9) == "/hi?user=") {
+  } else if (request.url.includes('/hi?nom=')) {
     response.setHeader("Content-Type", "text/html; charset=utf-8");
     var name = querystring.unescape(request.url.substr(9));
-    response.end("<!doctype html><html><body> hi " + name + "}</body></html>");
+    response.end("<!doctype html><html><body> hi " + name + "</body></html>");
+
   // Handle files request
   } else {
     const req_path = request.url.slice(1);
@@ -33,11 +38,13 @@ function webserver(request, response) {
     // Check if the file exists inside the parent directory
     fs.access(req_path, (err) => {
       if (err) {
+        // Send error statusCode 404
         response.statusCode = 404;
         response.end(
           "<!doctype html><html><body>File not found.</body></html>"
         );
       } else {
+        // Send File
         response.setHeader("Content-Type", mime.getType(req_path));
         response.end(fs.readFileSync(req_path));
       }
