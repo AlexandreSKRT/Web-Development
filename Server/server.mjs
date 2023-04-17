@@ -32,6 +32,7 @@ function webserver(request, response) {
   } else if (request.url.startsWith("/salut?visiteur=")) {
     // GET request -> "/salut?visiteur="
     var visitor = querystring.unescape(request.url.substr(16));
+    visitor = visitor.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     response.setHeader("Content-Type", "text/html; charset=utf-8");
     response.end("<!doctype html><html><body>salut " + visitor + ", the following users have already visited this page: " + listVisitors.join(", ") + "</body></html>");
     listVisitors.push(visitor);

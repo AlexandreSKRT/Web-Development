@@ -1,0 +1,2 @@
+$$ install a new module on node.js
+>> npm install module_name
