@@ -69,3 +69,13 @@ function restore_json() {
   xhr.open("GET", "../../restore");
   xhr.send();
 }
+
+function show_piechart() {
+  // Retrieves container + refreshes it
+  var container = document.getElementById("MAINSHOW");
+  container.innerHTML = "";
+  // XMLHTTP request -> server1.mjs
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "../../PieCh");
+  xhr.send();
+}

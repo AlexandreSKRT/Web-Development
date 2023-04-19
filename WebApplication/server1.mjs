@@ -88,6 +88,11 @@ function webserver(request, response) {
     response.setHeader("Content-Type", "text/html; charset=utf-8");  
     response.end();
 
+  } else if (request.url.startsWith("/PieCh")) {
+    // TO CODE...
+    response.setHeader("Content-Type", "text/html; charset=utf-8");  
+    response.end();
+
   } else {
     // Server works!
     response.setHeader("Content-Type", "text/html; charset=utf-8");

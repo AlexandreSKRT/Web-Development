@@ -1,1 +1,5 @@
-[{"title":"foo","color":"red","value":10},{"title":"bar","color":"green","value":20},{"title":"lee","color":"blue","value":30}]
+[
+  { "title": "foo", "color": "red", "value": 10 },
+  { "title": "bar", "color": "green", "value": 20 },
+  { "title": "lee", "color": "blue", "value": 30 }
+]
