@@ -17,6 +17,10 @@ function display_add_form() {
   document.getElementById("form_add_element").style.visibility = "visible";
 }
 
+function display_remove_form() {
+    document.getElementById("form_remove_element").style.visibility = "visible";
+}
+
 function add_element() {
   // Retrieves container + refreshes it
   var container = document.getElementById("MAINSHOW");
@@ -30,3 +34,15 @@ function add_element() {
   xhr.open("GET", "../../add?title="+title+"&value="+value+"&color="+color);
   xhr.send();
 }
+
+function remove_element() {
+    // Retrieves container + refreshes it
+    var container = document.getElementById("MAINSHOW");
+    container.innerHTML = "";
+    // Retrieves element in the form
+    var index = document.getElementById("indexTF").value;
+    // XMLHTTP request -> server1.mjs
+    var xhr = new XMLHttpRequest(); 
+    xhr.open("GET", "../../remove?index="+index);
+    xhr.send();
+  }

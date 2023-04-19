@@ -41,7 +41,7 @@ function webserver(request, response) {
     response.setHeader("Content-Type", "application/json");
     response.end(fs.readFileSync("storage.json"));
 
-  } else if (request.url.startsWith("/add?title=")) {
+  } else if (request.url.startsWith("/add?")) {
     // Retrieves element and extracts features
     var element = request.url.substring(5);
     var title = querystring.parse(element).title;
@@ -50,6 +50,18 @@ function webserver(request, response) {
     // We retrieve the JSON data and write the new element
     var storage = JSON.parse(fs.readFileSync("storage.json"));
     storage.push({ title: title, color: color, value: value });
+    // We add to the storage.json the new data
+    fs.writeFileSync("storage.json", JSON.stringify(storage));
+    response.setHeader("Content-Type", "text/html; charset=utf-8");
+    response.end();
+
+  } else if (request.url.startsWith("/remove?")) {
+    // Retrieves index from url
+    var index = request.url.substring(14);
+    // We retrieve the JSON data and write the new element
+    var storage = JSON.parse(fs.readFileSync("storage.json"));
+    // We remove the element associated to the index
+    storage.splice(index, 1); 
     // We add to the storage.json the new data
     fs.writeFileSync("storage.json", JSON.stringify(storage));
     response.setHeader("Content-Type", "text/html; charset=utf-8");
