@@ -35,9 +35,25 @@ function webserver(request, response) {
         "<!doctype html><html><body>File does not exist.</body></html>"
       );
     }
+
   } else if (request.url.startsWith("/show")) {
-    response.setHeader("Content-Type", "application/json");  
+    // Shows text in storage.json
+    response.setHeader("Content-Type", "application/json");
     response.end(fs.readFileSync("storage.json"));
+
+  } else if (request.url.startsWith("/add?title=")) {
+    // Retrieves element and extracts features
+    var element = request.url.substring(5);
+    var title = querystring.parse(element).title;
+    var value = querystring.parse(element).value;
+    var color = querystring.parse(element).color;
+    // We retrieve the JSON data and write the new element
+    var storage = JSON.parse(fs.readFileSync("storage.json"));
+    storage.push({ title: title, color: color, value: value });
+    // We add to the storage.json the new data
+    fs.writeFileSync("storage.json", JSON.stringify(storage));
+    response.setHeader("Content-Type", "text/html; charset=utf-8");
+    response.end();
 
   } else {
     // Server works!

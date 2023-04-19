@@ -8,13 +8,19 @@
     <title>Client</title>
   </head>
   <body>
-<div>
-    <button id="_SHOW" onclick="show_text()">show txt</button>
-    <button id="ADD_BUTTON">add element</button>
-    <button id="REMOVE">remove element</button>
-    <button id="CLEAR">clear</button>
-    <button id="RESTORE">restore</button>
-</div>
-<div id="container"></div>
+    <div>
+      <button id="_SHOW" onclick="show_text()">show txt</button>
+      <button id="ADD_BUTTON" onclick="display_add_form()">add element</button>
+      <button id="REMOVE">remove element</button>
+      <button id="CLEAR">clear</button>
+      <button id="RESTORE">restore</button>
+    </div>
+    <div id="form_add_element" style="visibility: hidden">
+      <input id="titleTF" type="text" placeholder="title" />
+      <input id="colorTF" type="text" placeholder="color" />
+      <input id="valueTF" type="number" placeholder="value" />
+      <button id="SENDADD" onclick="add_element()">validate add</button>
+    </div>
+    <div id="MAINSHOW"></div>
   </body>
 </html>

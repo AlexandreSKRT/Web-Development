@@ -1,12 +1,32 @@
-"use strict"; 
+"use strict";
 
-function show_text(){
-    var container = document.getElementById("container");
-    container.innerHTML = "";
-    var xhr = new XMLHttpRequest(); 
-    xhr.open("GET", "../../show"); 
-    xhr.onload = function() {
-        container.textContent = this.responseText;
-    }
-    xhr.send();
+function show_text() {
+  // Retrieves container + refreshes it
+  var container = document.getElementById("MAINSHOW");
+  container.innerHTML = "";
+  // XMLHTTP request -> server1.mjs
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "../../show");
+  xhr.onload = function () {
+    container.textContent = this.responseText;
+  };
+  xhr.send();
+}
+
+function display_add_form() {
+  document.getElementById("form_add_element").style.visibility = "visible";
+}
+
+function add_element() {
+  // Retrieves container + refreshes it
+  var container = document.getElementById("MAINSHOW");
+  container.innerHTML = "";
+  // Retrieves element in the form
+  var title = document.getElementById("titleTF").value;
+  var value = document.getElementById("valueTF").value;
+  var color = document.getElementById("colorTF").value;
+  // XMLHTTP request -> server1.mjs
+  var xhr = new XMLHttpRequest(); 
+  xhr.open("GET", "../../add?title="+title+"&value="+value+"&color="+color);
+  xhr.send();
 }
