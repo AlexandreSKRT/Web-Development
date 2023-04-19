@@ -5,6 +5,8 @@ import * as fs from "fs";
 import mime from "mime";
 import querystring from "querystring";
 
+const default_storage = [{"title": "empty", "color": "red", "value": 1}]
+
 // request processing
 function webserver(request, response) {
   console.log(request.url);
@@ -65,6 +67,12 @@ function webserver(request, response) {
     // We add to the storage.json the new data
     fs.writeFileSync("storage.json", JSON.stringify(storage));
     response.setHeader("Content-Type", "text/html; charset=utf-8");
+    response.end();
+
+  } else if (request.url.startsWith("/clear")) {
+    // We rewrite "storage.json" using default_storage
+    fs.writeFileSync("storage.json",JSON.stringify(default_storage));
+    response.setHeader("Content-Type", "text/html; charset=utf-8");  
     response.end();
 
   } else {
