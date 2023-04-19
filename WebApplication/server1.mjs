@@ -5,11 +5,18 @@ import * as fs from "fs";
 import mime from "mime";
 import querystring from "querystring";
 
-const default_storage = [{"title": "empty", "color": "red", "value": 1}]
+//************ CONSTANT VARIABLES FOR CLEAR/RESTORE *******************//
+const default_storage = [{"title": "empty", "color": "red", "value": 1}];
+const restored_storage = [
+    {"title": "foo", "color": "red", "value": 10}, 
+    {"title": "bar", "color": "green", "value": 20}, 
+    {"title": "lee", "color": "blue", "value": 30}
+];
+//*********************************************************************//
 
 // request processing
 function webserver(request, response) {
-  console.log(request.url);
+  console.log("[REQUEST] : " + request.url);
 
   if (request.url == "/kill") {
     // Kill Process -> shuts down server
@@ -72,6 +79,12 @@ function webserver(request, response) {
   } else if (request.url.startsWith("/clear")) {
     // We rewrite "storage.json" using default_storage
     fs.writeFileSync("storage.json",JSON.stringify(default_storage));
+    response.setHeader("Content-Type", "text/html; charset=utf-8");  
+    response.end();
+
+  } else if (request.url.startsWith("/restore")) {
+    // We rewrite "storage.json" using default_storage
+    fs.writeFileSync("storage.json",JSON.stringify(restored_storage));
     response.setHeader("Content-Type", "text/html; charset=utf-8");  
     response.end();
 

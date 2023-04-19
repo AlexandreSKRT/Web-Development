@@ -55,7 +55,17 @@ function clear_json() {
   var container = document.getElementById("MAINSHOW");
   container.innerHTML = "";
   // XMLHTTP request -> server1.mjs
-  var xhr = new XMLHttpRequest(); 
+  var xhr = new XMLHttpRequest();
   xhr.open("GET", "../../clear");
+  xhr.send();
+}
+
+function restore_json() {
+  // Retrieves container + refreshes it
+  var container = document.getElementById("MAINSHOW");
+  container.innerHTML = "";
+  // XMLHTTP request -> server1.mjs
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "../../restore");
   xhr.send();
 }
