@@ -3,6 +3,7 @@
 import * as fs from "fs";
 import express, { response } from "express";
 import { request } from "http";
+import { pid } from "process";
 
 //*************************** INIT SERVER *****************************//
 
@@ -113,6 +114,25 @@ server.get("/ttlist/:xxx", (request, response) => {
   // sends reponse
   response.contentType("application/json");
   response.send(publication_names);
+});
+
+server.get("/publication/:xxx", (request, response) => {
+  // init params
+  var key_request = request.params.xxx;
+  var db = JSON.parse(fs.readFileSync("db.json"));
+  // iterates in the db to find the publication with corresponding key
+  try {
+    for (var publication of db) {
+      if (publication.key == key_request) {
+        // sends reponse
+        response.contentType("application/json");
+        response.send(publication);
+      }
+    }
+  } catch (error) {
+    response.status(404);
+    response.send(error);
+  }
 });
 
 //*********************************************************************//
