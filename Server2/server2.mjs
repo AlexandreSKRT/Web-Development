@@ -15,6 +15,25 @@ server.use(express.json());
 
 //*********************************************************************//
 
+//************************* INIT VARIABLES ****************************//
+
+const imaginary_publication = {
+  key: "imaginary",
+  title: "Web-Development Lab on server 2",
+  journal: "Télécom Paris; Top 10 publications",
+  year: "2023",
+  month: "apr",
+  keywords: "Web-Development, Server, REST",
+  lang: "en",
+  authors: ["A. Sukeratha"],
+  category: "article",
+  state: "published",
+  dept: "webdesign",
+  group: "sdr",
+};
+
+//*********************************************************************//
+
 //************************** HANDLE REQUESTS **************************//
 
 // Send Hi when getting '/' request
@@ -138,31 +157,43 @@ server.get("/publication/:xxx", (request, response) => {
 server.delete("/publication/:xxx", (request, response) => {
   // init params
   var key_request = request.params.xxx;
-  var index_publication; 
-  var is_publication_found = false; 
+  var index_publication;
+  var is_publication_found = false;
   var db = JSON.parse(fs.readFileSync("db.json"));
-
   // iterates in the db to find the index of the publication
-  try{
+  try {
     for (index in db) {
-        if (db[index].key == key_request) {
-            index_publication = index;
-            is_publication_found = true; 
-        }
+      if (db[index].key == key_request) {
+        index_publication = index;
+        is_publication_found = true;
+      }
     }
-  } catch(error) {
+  } catch (error) {
     response.status(404);
-    response.send(error); 
+    response.send(error);
   }
-
   // Deletes the publication with associated key
   if (is_publication_found) {
     df.splice(index_publication, 1);
-    console.log("Publication deleted"); 
-    response.send(); 
+    console.log("Publication deleted");
+    response.send();
   }
-
 });
+
+server.post("/publication", (request, response) => {
+    // init params
+    var db = JSON.parse(fs.readFileSync("db.json"));
+    // [TO CODE ...]
+    db.push(imaginary_publication); 
+})
+
+server.put("/publication", (request, response) => {
+    // init params
+    var key_request = request.params.xxx; 
+    var db = JSON.parse(fs.readFileSync("db.json"));
+    // [TO CODE ...]
+})
+
 
 //*********************************************************************//
 
