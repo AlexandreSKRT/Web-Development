@@ -65,6 +65,56 @@ server.get("/auth/:xxx", (request, response) => {
   response.send(count.toString());
 });
 
+// Answers the descriptors of publications whose names of authors contain xxx
+server.get("/papers_from/:xxx", (request, response) => {
+  // init params
+  var substring = request.params.xxx.toLowerCase();
+  var db = JSON.parse(fs.readFileSync("db.json"));
+  var descriptors = [];
+  // iterates in the db to find the descriptors with authors matching the previous requirement
+  try {
+    for (var publication of db) {
+      for (var author of publication.authors) {
+        if (author.toLowerCase().includes(substring)) {
+          descriptors.push(publication);
+          break;
+        }
+      }
+    }
+  } catch (error) {
+    response.status(404);
+    response.send(error);
+  }
+  // sends reponse
+  response.contentType("application/json");
+  response.send(descriptors);
+});
+
+// Answers the titles of publications whose names of authors contain xxx
+server.get("/ttlist/:xxx", (request, response) => {
+  // init params
+  var substring = request.params.xxx.toLowerCase();
+  var db = JSON.parse(fs.readFileSync("db.json"));
+  var publication_names = [];
+  // iterates in the db to find the descriptors with authors matching the previous requirement
+  try {
+    for (var publication of db) {
+      for (var author of publication.authors) {
+        if (author.toLowerCase().includes(substring)) {
+          publication_names.push(publication.title);
+          break;
+        }
+      }
+    }
+  } catch (error) {
+    response.status(404);
+    response.send(error);
+  }
+  // sends reponse
+  response.contentType("application/json");
+  response.send(publication_names);
+});
+
 //*********************************************************************//
 
 // Listens to the port given in command line
