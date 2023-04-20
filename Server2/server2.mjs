@@ -135,6 +135,35 @@ server.get("/publication/:xxx", (request, response) => {
   }
 });
 
+server.delete("/publication/:xxx", (request, response) => {
+  // init params
+  var key_request = request.params.xxx;
+  var index_publication; 
+  var is_publication_found = false; 
+  var db = JSON.parse(fs.readFileSync("db.json"));
+
+  // iterates in the db to find the index of the publication
+  try{
+    for (index in db) {
+        if (db[index].key == key_request) {
+            index_publication = index;
+            is_publication_found = true; 
+        }
+    }
+  } catch(error) {
+    response.status(404);
+    response.send(error); 
+  }
+
+  // Deletes the publication with associated key
+  if (is_publication_found) {
+    df.splice(index_publication, 1);
+    console.log("Publication deleted"); 
+    response.send(); 
+  }
+
+});
+
 //*********************************************************************//
 
 // Listens to the port given in command line
