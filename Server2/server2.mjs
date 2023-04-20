@@ -43,16 +43,22 @@ server.get("/papercount", (request, response) => {
 // Answers the number of publications where the name of one of the authors contains xxx
 server.get("/auth/:xxx", (request, response) => {
   // init params
-  var substring = request.params.xxx;
+  var substring = request.params.xxx.toLowerCase();
   var db = JSON.parse(fs.readFileSync("db.json"));
   var count = 0;
   // iterates in the db to count authors respecting the prev. condition
-  for (var publication in db) {
-    for (var author in publication.authors) {
-      if (author.toLowerCase().includes(author.toLowerCase())) {
-        count += 1;
+  try {
+    for (var publication of db) {
+      for (var author of publication.authors) {
+        // console.log("Substring : " +substring +"; Author to test : " +author.toLowerCase());
+        if (author.toLowerCase().includes(substring)) {
+          count += 1;
+        }
       }
     }
+  } catch (error) {
+    response.status(404);
+    response.send(error);
   }
   // sends reponse
   response.contentType("text/plain");
