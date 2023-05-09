@@ -1,0 +1,6 @@
+curl --header "Content-Type: application/json" \
+  --request PUT \
+  --data '{
+    "title": "Web-Development Lab on server 2",
+  }' \
+  http://localhost:8000/publication/8000304

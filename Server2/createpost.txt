@@ -1,0 +1,17 @@
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{
+  key: "imaginary",
+  title: "Web-Development Lab on server 2",
+  journal: "Télécom Paris; Top 10 publications",
+  year: "2023",
+  month: "apr",
+  keywords: "Web-Development, Server, REST",
+  lang: "en",
+  authors: ["A. Sukeratha"],
+  category: "article",
+  state: "published",
+  dept: "webdesign",
+  group: "sdr",
+}' \
+  http://localhost:8000/publication

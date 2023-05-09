@@ -8,7 +8,6 @@
     <title>Client</title>
   </head>
   <body>
-
     <div>
       <button id="_SHOW" onclick="show_text()">show txt</button>
       <button id="ADD_BUTTON" onclick="display_add_form()">add element</button>
@@ -16,6 +15,7 @@
       <button id="CLEAR" onclick="clear_json()">clear</button>
       <button id="RESTORE" onclick="restore_json()">restore</button>
       <button id="BUTPIE" onclick="show_piechart()">show piechart</button>
+      <button id="LOC_PIEB" onclick="show_local_piechart()">show local piechart</button>
     </div>
 
     <div id="form_add_element" style="visibility: hidden">
@@ -26,11 +26,10 @@
     </div>
 
     <div id="form_remove_element" style="visibility: hidden">
-        <input id="indexTF" type="number" placeholder="index" />
-        <button id="SENDREM" onclick="remove_element()">validate remove</button>
-      </div>
+      <input id="indexTF" type="number" placeholder="index" />
+      <button id="SENDREM" onclick="remove_element()">validate remove</button>
+    </div>
 
     <div id="MAINSHOW"></div>
-
   </body>
 </html>

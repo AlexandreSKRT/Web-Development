@@ -6,11 +6,11 @@ import mime from "mime";
 import querystring from "querystring";
 
 //************ CONSTANT VARIABLES FOR CLEAR/RESTORE *******************//
-const default_storage = [{"title": "empty", "color": "red", "value": 1}];
+const default_storage = [{ title: "empty", color: "red", value: 1 }];
 const restored_storage = [
-    {"title": "foo", "color": "red", "value": 10}, 
-    {"title": "bar", "color": "green", "value": 20}, 
-    {"title": "lee", "color": "blue", "value": 30}
+  { title: "foo", color: "red", value: 10 },
+  { title: "bar", color: "green", value: 20 },
+  { title: "lee", color: "blue", value: 30 },
 ];
 //*********************************************************************//
 
@@ -70,7 +70,7 @@ function webserver(request, response) {
     // We retrieve the JSON data and write the new element
     var storage = JSON.parse(fs.readFileSync("storage.json"));
     // We remove the element associated to the index
-    storage.splice(index, 1); 
+    storage.splice(index, 1);
     // We add to the storage.json the new data
     fs.writeFileSync("storage.json", JSON.stringify(storage));
     response.setHeader("Content-Type", "text/html; charset=utf-8");
@@ -78,20 +78,22 @@ function webserver(request, response) {
 
   } else if (request.url.startsWith("/clear")) {
     // We rewrite "storage.json" using default_storage
-    fs.writeFileSync("storage.json",JSON.stringify(default_storage));
-    response.setHeader("Content-Type", "text/html; charset=utf-8");  
+    fs.writeFileSync("storage.json", JSON.stringify(default_storage));
+    response.setHeader("Content-Type", "text/html; charset=utf-8");
     response.end();
 
   } else if (request.url.startsWith("/restore")) {
     // We rewrite "storage.json" using default_storage
-    fs.writeFileSync("storage.json",JSON.stringify(restored_storage));
-    response.setHeader("Content-Type", "text/html; charset=utf-8");  
+    fs.writeFileSync("storage.json", JSON.stringify(restored_storage));
+    response.setHeader("Content-Type", "text/html; charset=utf-8");
     response.end();
 
   } else if (request.url.startsWith("/PieCh")) {
-    // TO CODE...
-    response.setHeader("Content-Type", "text/html; charset=utf-8");  
-    response.end();
+    
+  } else if (request.url.startsWith("/Items")) {
+    // Sends data from storage.JSON
+    response.setHeader("Content-Type", "application/json");
+    response.end(fs.readFileSync("storage.json"));
 
   } else {
     // Server works!
